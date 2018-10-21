@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class UserService {
@@ -9,7 +10,13 @@ export class UserService {
   }
 
   getAll(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({authorization: 'Bearer ' + localStorage.getItem('jwt')})
+
+    };
+
+
     //return this.http.get('//localhost:8080/cool-cars');
-    return this.http.get('//localhost:8080/users');
+    return this.http.get('//localhost:8080/users', httpOptions);
   }
 }

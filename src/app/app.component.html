@@ -1,13 +1,22 @@
 <mat-toolbar color="primary">
-  <div style="text-align:center" class="container">
-    <h1>
-      Welcome to {{title}}!
-    </h1>
-    <div class="container">
-      <p>Id: <span>{{greeting.id}}</span></p>
-      <p>Message: <span>{{greeting.content}}!</span></p>
-    </div>
-  </div>
 </mat-toolbar>
-
-<app-user-list></app-user-list>
+<div class="container">
+  <ul class="nav nav-pills">
+    <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
+    <li><a routerLinkActive="active" routerLink="/login">Login</a></li>
+    <li><a class="nav-link" href="#"(click)="socialSignIn('google'); $event.preventDefault()">Google</a>
+    </li>
+    <li><a class="nav-link" href="#"(click)="socialSignIn('linkedin'); $event.preventDefault()">Linkedin</a>
+    </li>
+    <li><a class="nav-link" href="#"(click)="socialSignIn('facebook'); $event.preventDefault()">Facebook</a>
+    </li>
+    <li> <a class="nav-link logout" href="#"
+            (click)="logout(); $event.preventDefault()">Logout</a></li>
+  </ul>
+</div>
+<div class="container">
+  app.component.html#router-outlet-start
+  <router-outlet></router-outlet>
+  app.component.html#router-outlet-end
+</div>
+<!--<app-user-list></app-user-list>-->
