@@ -40,10 +40,21 @@ export class AppComponent {
       this.router.navigateByUrl('/');
     })
 **/
+// this.socialAuthService.signOut();
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
+
+
         console.log(socialPlatform+" sign in data : " , userData);
+
+        var credentials = {token: userData['token']};
+        console.log(credentials + " credentyials *******");
         alert('send token to server and get jwt authentication token (either by creating a customer or authenticating on server)');
+          this.app.authenticateGoogle(credentials, () => {
+            this.router.navigateByUrl('/');
+          });
+
+
         // Now sign-in with userData
         // ...
 

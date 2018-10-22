@@ -37,10 +37,19 @@ export class AppService {
 
   }
 
-  authenticateGoogle(callback) {
+
+  authenticateGoogle(credentials, callback) {
+
+    const headerss = new HttpHeaders(localStorage.getItem('jwt') ? {
+      authorization: 'Bearer ' + localStorage.getItem('jwt')
+    }: null);
+
+    const httpOptions = {
+      headers: headerss
+    };
 
 
-    this.http.post('//localhost:8080/connect/google', null).subscribe(response => {
+    this.http.post('//localhost:8080/api/auth/google', credentials, httpOptions).subscribe(response => {
       console.log('auth response.....');
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);

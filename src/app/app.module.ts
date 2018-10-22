@@ -11,7 +11,7 @@ import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolba
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {AppService} from './service/app.service';
 import {HomeComponent} from './home/home.component'
@@ -68,7 +68,7 @@ export function getAuthServiceConfigs() {
     MatInputModule,
     MatListModule,
     MatToolbarModule,
-    SocialLoginModule,
+    SocialLoginModule
   ],
   providers: [UserService, AppService, {
     provide: AuthServiceConfig,
