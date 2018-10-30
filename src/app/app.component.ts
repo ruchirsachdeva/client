@@ -16,18 +16,18 @@ import {UserService} from "./shared/user/user.service";
 })
 export class AppComponent {
   constructor(private app: AppService, private userService: UserService, private router: Router, private socialAuthService: AuthService) {
-    this.app.authenticate(undefined, undefined);
   }
 
 
-  authenticated() { return localStorage.getItem('jwt');
+  authenticated() {
+    return localStorage.getItem('jwt');
   }
   logout() {
     if (this.authenticated()) {
       this.socialAuthService.signOut();
       this.app.logout();
     }
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
 
