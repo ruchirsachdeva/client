@@ -1,12 +1,13 @@
-<h1>Greeting</h1>
 <div [hidden]="!authenticated()">
-  <p>The ID is</p>
+  <h1>Welcome to the PD Social App</h1>
   <app-user></app-user>
   <app-therapy-list></app-therapy-list>
-  <app-data></app-data>
 </div>
 
 <div [hidden]="authenticated()">
-  <p>Login to see your greeting</p>
+  <h1>Login to the PD Social App</h1>
+  <p>Login using Google for Doctor role.</p>
+  <p>Login using Facebook for Researcher role.</p>
+  <p>Login using Linkedin for Patient role.</p>
 </div>
 

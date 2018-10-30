@@ -25,12 +25,13 @@ import {
 } from "angular-6-social-login-v2";
 import { UserComponent } from './user/user.component';
 import { TherapyListComponent } from './therapy-list/therapy-list.component';
-import { DataComponent } from './data/data.component';
+import { SessionListComponent } from './session-list/session-list.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'sessions/:username', component: SessionListComponent}
 ];
 
 
@@ -64,7 +65,7 @@ export function getAuthServiceConfigs() {
     UserListComponent,
     UserComponent,
     TherapyListComponent,
-    DataComponent
+    SessionListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

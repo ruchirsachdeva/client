@@ -1,11 +1,9 @@
+
 <div class="container">
 
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>PD Social App</span>
-      <span class="example-fill-remaining-space"></span>
-      <span class="align-center"></span>
-      <span class="example-spacer"></span>
+      <div (click)="redirect('')">PD Social App</div>
       <button mat-button (click)="socialSignIn('google')">Google</button>
       <button mat-button (click)="socialSignIn('facebook')">Facebook</button>
       <button mat-button (click)="socialSignIn('linkedin')">Linkedin</button>
@@ -32,8 +30,6 @@
 
 </div>
 <div class="container">
-  app.component.html#router-outlet-start
   <router-outlet></router-outlet>
-  app.component.html#router-outlet-end
 </div>
 <!--<app-user-list></app-user-list>-->

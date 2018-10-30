@@ -1,26 +1,35 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 import {UserService} from "../shared/user/user.service";
 import * as d3 from 'd3';
 import {DataSource} from "@angular/cdk/collections";
-import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-data',
-  templateUrl: './data.component.html',
-  styleUrls: ['./data.component.css']
+  selector: 'app-session-list',
+  templateUrl: './session-list.component.html',
+  styleUrls: ['./session-list.component.css']
 })
-export class DataComponent implements OnInit {
+export class SessionListComponent implements OnInit, OnDestroy {
 
 
-  constructor(private userService: UserService) {
-  }
-
-  sessions = new SessionDataSource(this.userService);
+  sessions: DataSource<any>;
   displayedColumns: any = ['id', 'dataUrl'];
 
-  ngOnInit() {
-
+  constructor(private userService: UserService, private activeRoute: ActivatedRoute) {
   }
+
+  ngOnInit() {
+    this.sessions = new SessionDataSource(this.userService, this.activeRoute.snapshot.params['username']);
+    // remove any existing graph.
+    d3.selectAll("svg").remove();
+  }
+
+  ngOnDestroy() {
+    // remove any existing graph.
+    d3.selectAll("svg").remove();
+  }
+
 
   setData(data: any) {
 
@@ -103,12 +112,12 @@ export class DataComponent implements OnInit {
 
 
 export class SessionDataSource extends DataSource<any> {
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private username: string) {
     super();
   }
 
   connect(): Observable<Array<any>> {
-    return this.userService.getData();
+    return this.userService.getSessionsOfPatient(this.username);
   }
 
   disconnect() {

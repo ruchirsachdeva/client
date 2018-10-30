@@ -49,7 +49,6 @@ export class AppComponent {
 
         var credentials = {token: userData['token']};
         console.log(credentials + " credentials *******");
-        alert('send token to server and get jwt authentication token (either by creating a customer or authenticating on server)');
           this.app.authenticateGoogle(credentials, () => {
             this.router.navigateByUrl('/');
           });
@@ -60,6 +59,10 @@ export class AppComponent {
 
       }
     );
+  }
+
+  redirect(pagename: string) {
+    this.router.navigate(['/'+pagename]);
   }
 
 }

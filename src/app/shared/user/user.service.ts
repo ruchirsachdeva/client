@@ -34,6 +34,20 @@ export class UserService {
   }
 
 
+  getSessionsOfPatient(username: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({authorization: 'Bearer ' + localStorage.getItem('jwt')})
+
+    };
+
+
+    //return this.http.get('//localhost:8080/cool-cars');
+    return this.http.get('//localhost:8080/api/users/user/'+username+'/tests', httpOptions);
+  }
+
+
+
+
   getMe(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({authorization: 'Bearer ' + localStorage.getItem('jwt')})

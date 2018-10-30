@@ -24,7 +24,6 @@ export class AppService {
       console.log('auth response.....');
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
-      alert(localStorage.getItem('jwt'));
       return callback && callback();
     });
 
@@ -46,7 +45,6 @@ export class AppService {
       console.log('auth response.....');
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
-      alert(localStorage.getItem('jwt'));
       return callback && callback();
     });
 
