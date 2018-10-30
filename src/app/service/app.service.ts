@@ -20,7 +20,7 @@ export class AppService {
     };
 
 
-    this.http.post('//localhost:8080/api/auth', credentials, httpOptions).subscribe(response => {
+    this.http.post('https://assignment3-lnu.herokuapp.com//api/auth', credentials, httpOptions).subscribe(response => {
       console.log('auth response.....');
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
@@ -41,7 +41,7 @@ export class AppService {
     };
 
 
-    this.http.post('//localhost:8080/api/auth/social', credentials, httpOptions).subscribe(response => {
+    this.http.post('https://assignment3-lnu.herokuapp.com//api/auth/social', credentials, httpOptions).subscribe(response => {
       console.log('auth response.....');
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
@@ -56,7 +56,7 @@ export class AppService {
 
   logout() {
     localStorage.removeItem('jwt');
-   // return this.http.post('//localhost:8080/logout',null);
+    return this.http.post('https://assignment3-lnu.herokuapp.com//logout',null);
   //  this.authEvents.next(new DidLogout());
   }
 

@@ -17,8 +17,8 @@ export class UserService {
     };
 
 
-    //return this.http.get('//localhost:8080/cool-cars');
-    return this.http.get('//localhost:8080/api/users/me/tests', httpOptions);
+    //return this.http.get('https://assignment3-lnu.herokuapp.com//cool-cars');
+    return this.http.get('https://assignment3-lnu.herokuapp.com//api/users/me/tests', httpOptions);
   }
 
 
@@ -29,8 +29,8 @@ export class UserService {
     };
 
 
-    //return this.http.get('//localhost:8080/cool-cars');
-    return this.http.get('//localhost:8080/api/users/user/'+username+'/tests', httpOptions);
+    //return this.http.get('https://assignment3-lnu.herokuapp.com//cool-cars');
+    return this.http.get('https://assignment3-lnu.herokuapp.com//api/users/user/'+username+'/tests', httpOptions);
   }
 
 
@@ -43,8 +43,8 @@ export class UserService {
     };
 
 
-    //return this.http.get('//localhost:8080/cool-cars');
-    return this.http.get('//localhost:8080/api/users/me', httpOptions);
+    //return this.http.get('https://assignment3-lnu.herokuapp.com//cool-cars');
+    return this.http.get('https://assignment3-lnu.herokuapp.com//api/users/me', httpOptions);
   }
 
 
@@ -55,7 +55,7 @@ export class UserService {
     };
 
 
-    //return this.http.get('//localhost:8080/cool-cars');
-    return this.http.get('//localhost:8080/api/users/therapies', httpOptions);
+    //return this.http.get('https://assignment3-lnu.herokuapp.com//cool-cars');
+    return this.http.get('https://assignment3-lnu.herokuapp.com//api/users/therapies', httpOptions);
   }
 }
