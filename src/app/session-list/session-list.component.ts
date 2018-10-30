@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {UserService} from "../shared/user/user.service";
 import * as d3 from 'd3';
 import {DataSource} from "@angular/cdk/collections";
+import {Data} from "../models/domains";
 
 @Component({
   selector: 'app-session-list',
@@ -31,7 +32,7 @@ export class SessionListComponent implements OnInit, OnDestroy {
   }
 
 
-  setData(data: any) {
+  setData(data: Array<Data>) {
 
     // remove any existing graph.
     d3.selectAll("svg").remove();

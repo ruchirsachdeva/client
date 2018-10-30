@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { AppService } from './service/app.service';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {AppService} from './service/app.service';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/finally';
-
-
 import {
-  GoogleLoginProvider, FacebookLoginProvider, AuthService,
-  LinkedinLoginProvider
-} from "angular-6-social-login-v2";
+  AuthService, LinkedinLoginProvider, GoogleLoginProvider,
+  FacebookLoginProvider
+} from "angular5-social-auth";
+import {UserService} from "./shared/user/user.service";
+
 
 @Component({
   selector: 'app-root',
@@ -15,54 +15,58 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private app: AppService, private router: Router, private socialAuthService: AuthService) {
+  constructor(private app: AppService, private userService: UserService, private router: Router, private socialAuthService: AuthService) {
     this.app.authenticate(undefined, undefined);
   }
+
+
+  authenticated() { return localStorage.getItem('jwt');
+  }
   logout() {
-    this.app.logout().finally(() => {
-      this.router.navigateByUrl('/');
-    }).subscribe();
+    if (this.authenticated()) {
+      this.socialAuthService.signOut();
+      this.app.logout();
+    }
+    this.router.navigateByUrl('/');
   }
 
 
-  public socialSignIn(socialPlatform : string) {
+  public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
-    if(socialPlatform == "facebook"){
+    if (socialPlatform == "facebook") {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    }else if(socialPlatform == "google"){
+    } else if (socialPlatform == "google") {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }else if (socialPlatform == "linkedin") {
+    } else if (socialPlatform == "linkedin") {
       socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
-/**
-    this.app.authenticateGoogle(() => {
+    /**
+     this.app.authenticateSocial(() => {
       console.log(" sign in data google *******: ");
       this.router.navigateByUrl('/');
     })
-**/
+     **/
 // this.socialAuthService.signOut();
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
 
 
-        console.log(socialPlatform+" sign in data : " , userData);
+        console.log(socialPlatform + " sign in data : ", userData);
 
-        var credentials = {token: userData['token']};
+        var credentials = {provider: socialPlatformProvider, token: userData['token']};
         console.log(credentials + " credentials *******");
-          this.app.authenticateGoogle(credentials, () => {
-            this.router.navigateByUrl('/');
-          });
+        this.app.authenticateSocial(credentials, () => {
+          this.router.navigate(['/']);
+        });
 
-
-        // Now sign-in with userData
-        // ...
 
       }
     );
   }
 
+
   redirect(pagename: string) {
-    this.router.navigate(['/'+pagename]);
+    this.router.navigate(['/' + pagename]);
   }
 
 }

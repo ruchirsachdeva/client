@@ -4,7 +4,6 @@ import {UserService} from './shared/user/user.service';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {UserListComponent} from './user-list/user-list.component';
 
 
 import {
@@ -22,7 +21,7 @@ import {LoginComponent} from './login/login.component';
 import {
   SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, LinkedinLoginProvider,
   FacebookLoginProvider
-} from "angular-6-social-login-v2";
+} from "angular5-social-auth";
 import { UserComponent } from './user/user.component';
 import { TherapyListComponent } from './therapy-list/therapy-list.component';
 import { SessionListComponent } from './session-list/session-list.component';
@@ -62,7 +61,6 @@ export function getAuthServiceConfigs() {
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UserListComponent,
     UserComponent,
     TherapyListComponent,
     SessionListComponent

@@ -4,6 +4,8 @@ import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
+import {User} from "../models/domains";
+
 @Component({
   selector: 'app-therapy-list',
   templateUrl: './therapy-list.component.html',
@@ -11,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class TherapyListComponent implements OnInit {
   therapies = new UserDataSource(this.userService);
-  displayedColumns: any = ['id', 'patient', 'therapy', 'medicine', 'dosage', 'med','data'];
+  displayedColumns: any = ['id', 'patient', 'therapy', 'medicine', 'dosage', 'med', 'data'];
 
 
   constructor(private userService: UserService, private router: Router) {
@@ -19,6 +21,11 @@ export class TherapyListComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+
+  isMed() {
+    return "patient" != localStorage.getItem('role');
   }
 
   loadSessions(username: string) {
@@ -34,6 +41,7 @@ export class UserDataSource extends DataSource<any> {
   }
 
   connect(): Observable<Array<any>> {
+
     return this.userService.getTherapies();
   }
 

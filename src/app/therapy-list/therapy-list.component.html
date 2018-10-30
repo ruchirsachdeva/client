@@ -29,7 +29,7 @@
         </ng-container>
         <ng-container matColumnDef="data">
           <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-          <mat-cell *matCellDef="let therapy"> <button mat-button (click)="loadSessions(therapy.patient.username)">Show test data</button></mat-cell>
+          <mat-cell *matCellDef="let therapy"> <button mat-button (click)="loadSessions(therapy.patient.username)" *ngIf="isMed()">Show test data</button></mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
