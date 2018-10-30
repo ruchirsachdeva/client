@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../service/app.service';
+import {UserService} from "../shared/user/user.service";
 
 @Component({
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  title = 'Demo';
-  users: Array<any>;
+  title = 'client';
+  constructor(private userService: UserService) {
 
-  constructor(private app: AppService) {
   }
 
-  authenticated() { return this.app.authenticated; }
+  authenticated() { return localStorage.getItem('jwt');
+  }
+
+
+
+
+  ngOnInit() {
+
+  }
+
+
+
+
+
+
 
 }

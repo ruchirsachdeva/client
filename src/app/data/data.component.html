@@ -1,0 +1,18 @@
+<div>
+  <mat-table class="mat-elevation-z8" [dataSource]="sessions">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let therapy"> {{therapy.testSessionId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dataUrl">
+      <mat-header-cell *matHeaderCellDef> dataUrl </mat-header-cell>
+      <mat-cell *matCellDef="let therapy"> <button mat-button (click)="setData(therapy.data)">{{therapy.dataUrl}}</button> </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator></mat-paginator>
+</div>
+<p>
+  data works!
+</p>

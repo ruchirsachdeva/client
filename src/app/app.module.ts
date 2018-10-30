@@ -7,7 +7,10 @@ import {AppComponent} from './app.component';
 import {UserListComponent} from './user-list/user-list.component';
 
 
-import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule,
+  MatMenuModule, MatIconModule, MatTableModule, MatProgressSpinnerModule, MatSortModule, MatPaginatorModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -20,6 +23,9 @@ import {
   SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, LinkedinLoginProvider,
   FacebookLoginProvider
 } from "angular-6-social-login-v2";
+import { UserComponent } from './user/user.component';
+import { TherapyListComponent } from './therapy-list/therapy-list.component';
+import { DataComponent } from './data/data.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -55,7 +61,10 @@ export function getAuthServiceConfigs() {
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    UserComponent,
+    TherapyListComponent,
+    DataComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -68,6 +77,12 @@ export function getAuthServiceConfigs() {
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
     SocialLoginModule
   ],
   providers: [UserService, AppService, {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AppService } from './service/app.service';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/finally';
+
+
 import {
   GoogleLoginProvider, FacebookLoginProvider, AuthService,
   LinkedinLoginProvider
@@ -17,11 +19,9 @@ export class AppComponent {
     this.app.authenticate(undefined, undefined);
   }
   logout() {
-    this.app.logout();
-  /**  this.app.logoutPost().finally(() => {
-      this.app.authenticated = false;
-      this.router.navigateByUrl('/login');
-    }).subscribe();**/
+    this.app.logout().finally(() => {
+      this.router.navigateByUrl('/');
+    }).subscribe();
   }
 
 
@@ -48,7 +48,7 @@ export class AppComponent {
         console.log(socialPlatform+" sign in data : " , userData);
 
         var credentials = {token: userData['token']};
-        console.log(credentials + " credentyials *******");
+        console.log(credentials + " credentials *******");
         alert('send token to server and get jwt authentication token (either by creating a customer or authenticating on server)');
           this.app.authenticateGoogle(credentials, () => {
             this.router.navigateByUrl('/');

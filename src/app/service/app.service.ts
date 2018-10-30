@@ -4,8 +4,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class AppService {
 
-  authenticated = false;
-
   constructor(private http: HttpClient) {
   }
 
@@ -27,11 +25,6 @@ export class AppService {
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
       alert(localStorage.getItem('jwt'));
-        if (localStorage.getItem('jwt')) {
-        this.authenticated = true;
-      } else {
-       this.authenticated = false;
-      }
       return callback && callback();
     });
 
@@ -54,11 +47,6 @@ export class AppService {
       console.log(response['token']);
       localStorage.setItem('jwt', response['token']);
       alert(localStorage.getItem('jwt'));
-      if (localStorage.getItem('jwt')) {
-        this.authenticated = true;
-      } else {
-        this.authenticated = false;
-      }
       return callback && callback();
     });
 
@@ -68,8 +56,9 @@ export class AppService {
 
 
 
-  logout(): void {
+  logout() {
     localStorage.removeItem('jwt');
+    return this.http.post('//localhost:8080/logout',null);
   //  this.authEvents.next(new DidLogout());
   }
 
